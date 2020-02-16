@@ -1,0 +1,43 @@
+<ActionBar [title]="title"></ActionBar>
+<FlexboxLayout>
+    <StackLayout>
+        <Label [text]="login.email.label"></Label>
+        <TextField [(ngModel)]="login.email.text"
+                   (blur)="focusLost('email')"
+                   [ngClass]="{ 'is-invalid': hasError('email') }"
+                   keyboardType="email"
+                   autocorrect="false"
+                   autocapitalizationType="none"
+                   [hint]="login.email.placeholder">
+        </TextField>
+        <Label class="alert alert-warning"
+               *ngIf="hasError('email')"
+               [text]="login.email.error"
+        ></Label>
+        <Label [text]="login.password.label"></Label>
+        <TextField #password
+                   [(ngModel)]="login.password.text"
+                   (blur)="focusLost('password')"
+                   [ngClass]="{ 'is-invalid': hasError('password') }"
+                   [secure]="!showPassword"
+                   autocorrect="false"
+                   autocapitalizationType="none">
+        </TextField>
+        <Label [text]="showHideIcon"
+               (tap)="toggleShowPassword()">
+        </Label>
+        <Label class="alert alert-warning"
+               *ngIf="hasError('password')"
+               [text]="login.password.error">
+        </Label>
+        <Button class="btn btn-primary"
+                [isEnabled]="isSubmitEnabled()"
+                [text]="login.loginBtnText"
+                (tap)="onSubmit()">
+        </Button>
+        <Button class="btn"
+                [text]="login.registerBtnText"
+                (tap)="onRegister()">
+        </Button>
+    </StackLayout>
+</FlexboxLayout>

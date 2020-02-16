@@ -1,0 +1,44 @@
+<h2>Login</h2>
+<form name="login-form">
+    <div class="form-group">
+        <label for="email" [innerText]="login.email.label"></label>
+        <input class="form-control"
+               name="email"
+               type="email"
+               [(ngModel)]="login.email.text"
+               (blur)="focusLost('email')"
+               [ngClass]="{ 'is-invalid': hasError('email') }"
+               [placeholder]="login.email.placeholder"
+               required
+        />
+        <div class="alert alert-danger"
+             *ngIf="hasError('email')"
+             [innerText]="login.email.error">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password" [innerText]="login.password.label"></label>
+        <input class="form-control"
+               name="password"
+               [type]="showPassword ? 'text' : 'password'"
+               [(ngModel)]="login.password.text"
+               (blur)="focusLost('password')"
+               [ngClass]="{ 'is-invalid': hasError('password') }"
+               required
+        />
+        <div class="alert alert-danger"
+             *ngIf="hasError('password')"
+             [innerText]="login.password.error">
+        </div>
+    </div>
+    <button class="btn btn-primary"
+            [disabled]="!isSubmitEnabled()"
+            (click)="onSubmit()"
+            [innerText]="login.loginBtnText">
+    </button>
+    <button class="btn"
+            (click)="onRegister()"
+            [innerText]="login.registerBtnText">
+    </button>
+</form>
+

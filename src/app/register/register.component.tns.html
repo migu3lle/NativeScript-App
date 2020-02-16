@@ -1,0 +1,68 @@
+<ActionBar [title]="title"></ActionBar>
+<FlexboxLayout>
+    <StackLayout>
+        <Label [text]="register.firstname.label"></Label>
+        <TextField [(ngModel)]="register.firstname.text"
+                   (blur)="focusLost('firstname')"
+                   [ngClass]="{ 'is-invalid': hasError('firstname') }"
+                   autocorrect="false"
+                   autocapitalizationType="none"
+                   [hint]="register.firstname.placeholder">
+        </TextField>
+        <Label class="alert alert-warning"
+               *ngIf="hasError('firstname')"
+               [text]="register.firstname.error">
+        </Label>
+        <Label [text]="register.lastname.label"></Label>
+        <TextField [(ngModel)]="register.lastname.text"
+                   (blur)="focusLost('lastname')"
+                   [ngClass]="{ 'is-invalid': hasError('lastname') }"
+                   autocorrect="false"
+                   autocapitalizationType="none"
+                   [hint]="register.lastname.placeholder">
+        </TextField>
+        <Label class="alert alert-warning"
+               *ngIf="hasError('lastname')"
+               [text]="register.lastname.error">
+        </Label>
+        <Label [text]="register.email.label"></Label>
+        <TextField [(ngModel)]="register.email.text"
+                   (blur)="focusLost('email')"
+                   [ngClass]="{ 'is-invalid': hasError('email') }"
+                   keyboardType="email"
+                   autocorrect="false"
+                   autocapitalizationType="none"
+                   [hint]="register.email.placeholder">
+        </TextField>
+        <Label class="alert alert-warning"
+               *ngIf="hasError('email')"
+               [text]="register.email.error"
+        ></Label>
+        <Label [text]="register.password.label"></Label>
+        <TextField #password
+                   [(ngModel)]="register.password.text"
+                   (blur)="focusLost('password')"
+                   [ngClass]="{ 'is-invalid': hasError('password') }"
+                   [secure]="!showPassword"
+                   autocorrect="false"
+                   autocapitalizationType="none">
+        </TextField>
+        <Label [text]="showHideIcon"
+               (tap)="toggleShowPassword()">
+        </Label>
+        <Label class="alert alert-warning"
+               *ngIf="hasError('password')"
+               [text]="register.password.error">
+        </Label>
+        <Button class="btn btn-primary"
+                [isEnabled]="isSubmitEnabled()"
+                [text]="register.registerBtnText"
+                (tap)="onSubmit()">
+        </Button>
+        <Button class="btn"
+                [text]="register.cancelBtnText"
+                (tap)="onCancel()">
+        </Button>
+    </StackLayout>
+</FlexboxLayout>
+

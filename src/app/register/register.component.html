@@ -1,0 +1,73 @@
+<h2>Register</h2>
+<form name="register-form">
+    <div class="form-group">
+        <label for="firstname" [innerText]="register.firstname.label"></label>
+        <input class="form-control"
+               name="firstname"
+               [(ngModel)]="register.firstname.text"
+               (blur)="focusLost('firstname')"
+               [ngClass]="{ 'is-invalid': hasError('firstname') }"
+               [placeholder]="register.firstname.placeholder"
+               required
+        />
+        <div class="alert alert-danger"
+             *ngIf="hasError('firstname')"
+             [innerText]="register.firstname.error">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="lastname" [innerText]="register.lastname.label"></label>
+        <input class="form-control"
+               name="lastname"
+               [(ngModel)]="register.lastname.text"
+               (blur)="focusLost('lastname')"
+               [ngClass]="{ 'is-invalid': hasError('lastname') }"
+               [placeholder]="register.lastname.placeholder"
+               required
+        />
+        <div class="alert alert-danger"
+             *ngIf="hasError('lastname')"
+             [innerText]="register.lastname.error">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email" [innerText]="register.email.label"></label>
+        <input class="form-control"
+               name="email"
+               type="email"
+               [(ngModel)]="register.email.text"
+               (blur)="focusLost('email')"
+               [ngClass]="{ 'is-invalid': hasError('email') }"
+               [placeholder]="register.email.placeholder"
+               required
+        />
+        <div class="alert alert-danger"
+             *ngIf="hasError('email')"
+             [innerText]="register.email.error">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password" [innerText]="register.password.label"></label>
+        <input class="form-control"
+               name="password"
+               [type]="showPassword ? 'text' : 'password'"
+               [(ngModel)]="register.password.text"
+               (blur)="focusLost('password')"
+               [ngClass]="{ 'is-invalid': hasError('password') }"
+               required
+        />
+        <div class="alert alert-danger"
+             *ngIf="hasError('password')"
+             [innerText]="register.password.error">
+        </div>
+    </div>
+    <button class="btn btn-primary"
+            [disabled]="!isSubmitEnabled()"
+            (click)="onSubmit()"
+            [innerText]="register.registerBtnText">
+    </button>
+    <button class="btn"
+            (click)="onCancel()"
+            [innerText]="register.cancelBtnText">
+    </button>
+</form>
